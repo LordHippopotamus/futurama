@@ -8,7 +8,7 @@ const initialState = {
 };
 
 export const fetchAllQuotes = createAsyncThunk(
-  'quotes/fetchQuotes',
+  'quotes/fetchAllQuotes',
   async () => {
     const request = await fetch('https://futuramaapi.herokuapp.com/api/quotes/163');
     const json = await request.json();
