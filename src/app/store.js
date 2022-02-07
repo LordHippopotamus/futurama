@@ -1,7 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
+import quotesReducer from '../features/quotes/quotesSlice';
 
 const store = configureStore({
-  reducer: {},
+  reducer: {
+    quotes: quotesReducer,
+  },
 });
 
 export default store;
