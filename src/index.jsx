@@ -9,6 +9,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { Provider } from 'react-redux';
 import store from './app/store';
 import App from './App';
+import Quotes from './features/quotes/Quotes';
 
 const theme = createTheme({
   palette: {
@@ -22,7 +23,9 @@ ReactDOM.render(
       <ThemeProvider theme={theme}>
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<App />} />
+            <Route path="/" element={<App />}>
+              <Route path="/quotes" element={<Quotes />} />
+            </Route>
           </Routes>
         </BrowserRouter>
       </ThemeProvider>
