@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Masonry from '@mui/lab/Masonry';
+import CircularProgress from '@mui/material/CircularProgress';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
@@ -16,9 +17,21 @@ const Quotes = () => {
   }, [dispatch]);
 
   const quotes = useSelector((state) => state.quotes.list);
+  const status = useSelector((state) => state.quotes.status);
+  const error = useSelector((state) => state.quotes.error);
 
-  return (
-    <Container sx={{ mt: 4, display: 'flex', justifyContent: 'center' }}>
+  let content;
+
+  if (status === 'loading' || status === 'idle') {
+    content = <CircularProgress />;
+  } else if (status === 'failed') {
+    content = (
+      <Typography sx={{ color: 'error.main' }}>
+        {error}
+      </Typography>
+    );
+  } else if (status === 'succeeded') {
+    content = (
       <Masonry
         columns={{
           xs: 1, sm: 2, md: 3, lg: 4,
@@ -41,6 +54,15 @@ const Quotes = () => {
           </Card>
         ))}
       </Masonry>
+    );
+  }
+
+  return (
+    <Container sx={{
+      mt: 4, display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '80vh',
+    }}
+    >
+      {content}
     </Container>
   );
 };
