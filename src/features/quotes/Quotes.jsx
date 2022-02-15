@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link, useSearchParams, useNavigate } from 'react-router-dom';
 import Masonry from '@mui/lab/Masonry';
 import CircularProgress from '@mui/material/CircularProgress';
 import Card from '@mui/material/Card';
@@ -14,6 +14,7 @@ import { fetchAllQuotes } from './quotesSlice';
 
 const Quotes = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [searchParams] = useSearchParams();
 
   useEffect(() => {
@@ -46,7 +47,7 @@ const Quotes = () => {
         >
           {quotes.slice((page - 1) * 20, page * 20).map((item) => (
             <Card key={item.quote}>
-              <CardActionArea>
+              <CardActionArea onClick={() => navigate(item.quote)}>
                 <CardMedia
                   component="img"
                   image={item.image}

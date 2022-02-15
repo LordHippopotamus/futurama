@@ -10,6 +10,7 @@ import { Provider } from 'react-redux';
 import store from './app/store';
 import App from './App';
 import Quotes from './features/quotes/Quotes';
+import SingleQuote from './features/quotes/SingleQuote';
 
 const theme = createTheme({
   palette: {
@@ -25,6 +26,7 @@ ReactDOM.render(
           <Routes>
             <Route path="/" element={<App />}>
               <Route path="/quotes" element={<Quotes />} />
+              <Route path="/quotes/:quoteQuery" element={<SingleQuote />} />
             </Route>
           </Routes>
         </BrowserRouter>
