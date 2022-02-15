@@ -5,7 +5,6 @@ import Masonry from '@mui/lab/Masonry';
 import CircularProgress from '@mui/material/CircularProgress';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea, Container } from '@mui/material';
 import Pagination from '@mui/material/Pagination';
@@ -48,11 +47,6 @@ const Quotes = () => {
           {quotes.slice((page - 1) * 20, page * 20).map((item) => (
             <Card key={item.quote}>
               <CardActionArea onClick={() => navigate(item.quote)}>
-                <CardMedia
-                  component="img"
-                  image={item.image}
-                  alt="character"
-                />
                 <CardContent>
                   <Typography gutterBottom variant="h5">{item.character}</Typography>
                   <Typography color="text.secondary">{item.quote}</Typography>
