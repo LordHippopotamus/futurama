@@ -16,14 +16,16 @@ const Quotes = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
 
-  useEffect(() => {
-    dispatch(fetchAllQuotes());
-  }, [dispatch]);
-
   const page = +searchParams.get('page') || 1;
   const quotes = useSelector((state) => state.quotes.list);
   const status = useSelector((state) => state.quotes.status);
   const error = useSelector((state) => state.quotes.error);
+
+  useEffect(() => {
+    if (status === 'idle') {
+      dispatch(fetchAllQuotes());
+    }
+  }, [dispatch]);
 
   let content;
 
