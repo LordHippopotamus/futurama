@@ -60,7 +60,6 @@ const Quotes = () => {
         <Pagination
           page={page}
           count={Math.ceil(quotes.length / 20)}
-          color="primary"
           renderItem={(item) => (
             <PaginationItem
               component={Link}
