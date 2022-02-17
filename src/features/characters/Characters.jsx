@@ -62,7 +62,7 @@ const Quotes = () => {
 
   return (
     <Container sx={{
-      my: 4, display: 'flex', justifyContent: 'center', minHeight: '80vh',
+      my: 4, display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '80vh',
     }}
     >
       {content}

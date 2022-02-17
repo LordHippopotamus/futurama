@@ -12,6 +12,7 @@ import App from './App';
 import Quotes from './features/quotes/Quotes';
 import SingleQuote from './features/quotes/SingleQuote';
 import Characters from './features/characters/Characters';
+import SingleCharacter from './features/characters/SingleCharacter';
 
 const theme = createTheme({
   palette: {
@@ -29,6 +30,7 @@ ReactDOM.render(
               <Route path="/quotes" element={<Quotes />} />
               <Route path="/quotes/:quoteQuery" element={<SingleQuote />} />
               <Route path="/characters" element={<Characters />} />
+              <Route path="/characters/:characterName" element={<SingleCharacter />} />
             </Route>
           </Routes>
         </BrowserRouter>

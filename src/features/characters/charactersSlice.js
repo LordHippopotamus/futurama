@@ -5,6 +5,7 @@ const initialState = {
   status: 'idle',
   error: null,
   list: [],
+  single: {},
 };
 
 export const fetchAllCharacters = createAsyncThunk(
@@ -13,6 +14,15 @@ export const fetchAllCharacters = createAsyncThunk(
     const request = await fetch('https://futuramaapi.herokuapp.com/api/v2/characters');
     const json = await request.json();
     return json;
+  },
+);
+
+export const fetchSingleCharacter = createAsyncThunk(
+  'quotes/fetchSingleCharacter',
+  async (name) => {
+    const request = await fetch(`https://futuramaapi.herokuapp.com/api/v2/characters?search=${name}`);
+    const json = await request.json();
+    return json[0];
   },
 );
 
@@ -32,6 +42,9 @@ const charactersSlice = createSlice({
       .addCase(fetchAllCharacters.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.error.message;
+      })
+      .addCase(fetchSingleCharacter.fulfilled, (state, action) => {
+        state.single = action.payload;
       });
   },
 });

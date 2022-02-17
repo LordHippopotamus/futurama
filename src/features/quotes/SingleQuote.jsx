@@ -15,7 +15,7 @@ const SingleQuote = () => {
 
   useEffect(() => {
     dispatch(fetchSingleQuote(query));
-  }, [query]);
+  }, [dispatch, query]);
 
   return (
     <Container
