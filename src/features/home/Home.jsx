@@ -35,9 +35,11 @@ const Quotes = () => {
 
   return (
     <Container
-      className="lox"
       sx={{
         height: 'calc(100vh - 68.5px)',
+        display: (status === 'loading' || status === 'idle') ? 'flex' : 'block',
+        alignItems: 'center',
+        justifyContent: 'center',
       }}
     >
       {content}

@@ -28,11 +28,11 @@ ReactDOM.render(
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<App />}>
+              <Route index element={<Home />} />
               <Route path="/quotes" element={<Quotes />} />
               <Route path="/quotes/:quoteQuery" element={<SingleQuote />} />
               <Route path="/characters" element={<Characters />} />
               <Route path="/characters/:characterName" element={<SingleCharacter />} />
-              <Route index element={<Home />} />
             </Route>
           </Routes>
         </BrowserRouter>
