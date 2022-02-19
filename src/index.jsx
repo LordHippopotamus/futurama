@@ -32,7 +32,7 @@ ReactDOM.render(
               <Route path="/quotes/:quoteQuery" element={<SingleQuote />} />
               <Route path="/characters" element={<Characters />} />
               <Route path="/characters/:characterName" element={<SingleCharacter />} />
-              <Route path="/home" element={<Home />} />
+              <Route index element={<Home />} />
             </Route>
           </Routes>
         </BrowserRouter>
