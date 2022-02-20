@@ -36,7 +36,7 @@ const Quotes = () => {
   return (
     <Container
       sx={{
-        height: 'calc(100vh - 68.5px)',
+        height: 'calc(100vh - 64px)',
         display: (status === 'loading' || status === 'idle') ? 'flex' : 'block',
         alignItems: 'center',
         justifyContent: 'center',
