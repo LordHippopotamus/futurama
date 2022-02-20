@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -14,7 +14,6 @@ import MenuItem from '@mui/material/MenuItem';
 const pages = ['Home', 'Quotes', 'Characters'];
 
 const Navbar = () => {
-  const navigate = useNavigate();
   const [anchorElNav, setAnchorElNav] = useState(null);
 
   const handleOpenNavMenu = (event) => {
@@ -25,11 +24,6 @@ const Navbar = () => {
     setAnchorElNav(null);
   };
 
-  const handleLinkClick = (to) => {
-    navigate(to.toLowerCase() === 'home' ? '/' : `/${to.toLowerCase()}`);
-    handleCloseNavMenu();
-  };
-
   return (
     <AppBar position="static">
       <Container maxWidth="xl">
@@ -37,8 +31,7 @@ const Navbar = () => {
           <Typography
             variant="h6"
             noWrap
-            onClick={(() => navigate('/'))}
-            sx={{ cursor: 'pointer', my: 2 }}
+            sx={{ my: 2 }}
           >
             Futurama
           </Typography>
@@ -73,7 +66,12 @@ const Navbar = () => {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={() => handleLinkClick(page)}>
+                <MenuItem
+                  key={page}
+                  onClick={handleCloseNavMenu}
+                  component={Link}
+                  to={page.toLowerCase() === 'home' ? '/' : `/${page.toLowerCase()}`}
+                >
                   <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}
@@ -83,7 +81,9 @@ const Navbar = () => {
             {pages.map((page) => (
               <Button
                 key={page}
-                onClick={() => handleLinkClick(page)}
+                onClick={handleCloseNavMenu}
+                component={Link}
+                to={page.toLowerCase() === 'home' ? '/' : `/${page.toLowerCase()}`}
                 sx={{ color: 'white', display: 'block' }}
               >
                 {page}
