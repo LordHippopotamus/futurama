@@ -2,20 +2,36 @@ import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Container from '@mui/material/Container';
-import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import { fetchSingleCharacter } from './charactersSlice';
+import CircularProgress from '@mui/material/CircularProgress';
+import { fetchAllCharacters } from './charactersSlice';
+import SingleCharacter from './SingleCharacter';
 
 const SingleCharacterPage = () => {
   const params = useParams();
   const dispatch = useDispatch();
 
   const name = params.characterName;
-  const character = useSelector((state) => state.characters.single);
+  const characters = useSelector((state) => state.characters.list);
+  const status = useSelector((state) => state.characters.status);
+  const error = useSelector((state) => state.characters.error);
+  const character = characters.find((item) => item.Name === name);
 
   useEffect(() => {
-    dispatch(fetchSingleCharacter(name));
+    if (status === 'idle') {
+      dispatch(fetchAllCharacters(name));
+    }
   }, [dispatch, name]);
+
+  let content;
+
+  if (status === 'loading') {
+    content = <CircularProgress />;
+  } else if (status === 'failed') {
+    content = <Typography sx={{ color: 'error.main' }}>{error}</Typography>;
+  } else if (status === 'succeeded') {
+    content = <SingleCharacter character={character} />;
+  }
 
   return (
     <Container
@@ -28,20 +44,7 @@ const SingleCharacterPage = () => {
         gap: 2,
       }}
     >
-      <Box sx={{ width: { sm: 1 / 2 } }}>
-        <img src={character.PicUrl} style={{ width: '100%' }} alt="character" />
-      </Box>
-      <Box>
-        <Typography>{`Name: ${character.Name}`}</Typography>
-        <Typography>{`Age: ${character.Age}`}</Typography>
-        <Typography>{`Planet: ${character.Planet}`}</Typography>
-        <Typography>{`Species: ${character.Species}`}</Typography>
-        <Typography>{`Profession: ${character.Profession}`}</Typography>
-        <Typography>{`Status: ${character.Status}`}</Typography>
-        <Typography>{`First Appearance: ${character.FirstAppearance}`}</Typography>
-        <Typography>{`Relatives: ${character.Relatives}`}</Typography>
-        <Typography>{`Voiced By: ${character.VoicedBy}`}</Typography>
-      </Box>
+      {content}
     </Container>
   );
 };
