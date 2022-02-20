@@ -2,7 +2,9 @@ import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Container from '@mui/material/Container';
-import { fetchSingleQuote } from './quotesSlice';
+import Typography from '@mui/material/Typography';
+import CircularProgress from '@mui/material/CircularProgress';
+import { fetchAllQuotes } from './quotesSlice';
 import SingleQuote from './SingleQuote';
 
 const SingleQuotePage = () => {
@@ -10,15 +12,36 @@ const SingleQuotePage = () => {
   const dispatch = useDispatch();
 
   const query = params.quoteQuery;
-  const quote = useSelector((state) => state.quotes.single);
+  const quotes = useSelector((state) => state.quotes.list);
+  const status = useSelector((state) => state.quotes.status);
+  const error = useSelector((state) => state.quotes.error);
+  const quote = quotes.find((item) => item.quote.includes(query.slice(0, 10)));
 
   useEffect(() => {
-    dispatch(fetchSingleQuote(query));
-  }, [dispatch, query]);
+    if (status === 'idle') {
+      dispatch(fetchAllQuotes());
+    }
+  }, [dispatch, quote]);
+
+  let content;
+
+  if (status === 'loading') {
+    content = <CircularProgress />;
+  } else if (status === 'failed') {
+    content = <Typography sx={{ color: 'error.main' }}>{error}</Typography>;
+  } else if (status === 'succeeded') {
+    content = <SingleQuote quote={quote} />;
+  }
 
   return (
-    <Container>
-      <SingleQuote quote={quote} />
+    <Container sx={{
+      height: 'calc(100vh - 64px)',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+    }}
+    >
+      {content}
     </Container>
   );
 };
