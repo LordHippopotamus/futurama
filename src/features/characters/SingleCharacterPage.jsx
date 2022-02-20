@@ -6,7 +6,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { fetchSingleCharacter } from './charactersSlice';
 
-const SingleCharacter = () => {
+const SingleCharacterPage = () => {
   const params = useParams();
   const dispatch = useDispatch();
 
@@ -24,6 +24,7 @@ const SingleCharacter = () => {
         mt: 4,
         display: 'flex',
         flexDirection: { xs: 'column', sm: 'row' },
+        justifyContent: { sm: 'center' },
         gap: 2,
       }}
     >
@@ -45,4 +46,4 @@ const SingleCharacter = () => {
   );
 };
 
-export default SingleCharacter;
+export default SingleCharacterPage;
