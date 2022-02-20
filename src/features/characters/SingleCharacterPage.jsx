@@ -37,11 +37,10 @@ const SingleCharacterPage = () => {
     <Container
       maxWidth="md"
       sx={{
-        mt: 4,
+        height: 'calc(100vh - 64px)',
         display: 'flex',
-        flexDirection: { xs: 'column', sm: 'row' },
-        justifyContent: { sm: 'center' },
-        gap: 2,
+        justifyContent: 'center',
+        alignItems: (status === 'loading') ? 'center' : 'flex-start',
       }}
     >
       {content}

@@ -4,7 +4,14 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 
 const SingleCharacter = ({ character }) => (
-  <>
+  <Box sx={{
+    mt: 4,
+    display: 'flex',
+    flexDirection: { xs: 'column', sm: 'row' },
+    justifyContent: { sm: 'center' },
+    gap: 2,
+  }}
+  >
     <Box sx={{ width: { sm: 1 / 2 } }}>
       <img src={character.PicUrl} style={{ width: '100%' }} alt="character" />
     </Box>
@@ -19,7 +26,7 @@ const SingleCharacter = ({ character }) => (
       <Typography>{`Relatives: ${character.Relatives}`}</Typography>
       <Typography>{`Voiced By: ${character.VoicedBy}`}</Typography>
     </Box>
-  </>
+  </Box>
 );
 
 export default SingleCharacter;
