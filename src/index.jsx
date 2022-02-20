@@ -11,7 +11,7 @@ import store from './app/store';
 import App from './App';
 import Home from './features/home/Home';
 import Quotes from './features/quotes/Quotes';
-import SingleQuote from './features/quotes/SingleQuote';
+import SingleQuotePage from './features/quotes/SingleQuotePage';
 import Characters from './features/characters/Characters';
 import SingleCharacter from './features/characters/SingleCharacter';
 
@@ -30,7 +30,7 @@ ReactDOM.render(
             <Route path="/" element={<App />}>
               <Route index element={<Home />} />
               <Route path="/quotes" element={<Quotes />} />
-              <Route path="/quotes/:quoteQuery" element={<SingleQuote />} />
+              <Route path="/quotes/:quoteQuery" element={<SingleQuotePage />} />
               <Route path="/characters" element={<Characters />} />
               <Route path="/characters/:characterName" element={<SingleCharacter />} />
             </Route>
