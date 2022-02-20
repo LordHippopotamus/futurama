@@ -35,7 +35,7 @@ const Slider = ({ items }) => {
       }}
       >
         {items.map((item, index) => (
-          <Box sx={{ display: slide === index ? 'flex' : 'none' }}>
+          <Box sx={{ display: slide === index ? 'flex' : 'none' }} key={item.quote}>
             <SingleQuote quote={item} />
           </Box>
         ))}
