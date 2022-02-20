@@ -1,13 +1,12 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from 'react';
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import SingleQuote from '../quotes/SingleQuote';
 
-const Slider = (props) => {
-  const { items } = props;
+const Slider = ({ items }) => {
   const [slide, setSlide] = useState(0);
 
   const prevSlide = () => {
@@ -36,37 +35,8 @@ const Slider = (props) => {
       }}
       >
         {items.map((item, index) => (
-          <Box
-            sx={{
-              height: 1,
-              width: 1,
-              display: slide === index ? 'flex' : 'none',
-              flexDirection: { xs: 'column', md: 'row' },
-              alignItems: { md: 'center' },
-              justifyContent: 'center',
-              gap: 2,
-            }}
-            key={item.quote}
-          >
-            <Box sx={{
-              height: { xs: 4 / 5, md: 4 / 5 },
-              width: { xs: 1, md: 1 / 2 },
-              backgroundImage: `url(${item.image})`,
-              backgroundPosition: 'center',
-              backgroundSize: 'contain',
-              backgroundRepeat: 'no-repeat',
-              mx: { xs: 'auto', md: 0 },
-            }}
-            />
-            <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-              <Typography>
-                &quot;
-                {item.quote}
-                &quot;
-                {' - '}
-                {item.character}
-              </Typography>
-            </Box>
+          <Box sx={{ display: slide === index ? 'flex' : 'none' }}>
+            <SingleQuote quote={item} />
           </Box>
         ))}
       </Box>
