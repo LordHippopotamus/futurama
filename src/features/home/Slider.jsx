@@ -10,11 +10,11 @@ const Slider = ({ items }) => {
   const [slide, setSlide] = useState(0);
 
   const prevSlide = () => {
-    setSlide(slide - 1);
+    setSlide((prev) => (prev <= 0 ? items.length - 1 : prev - 1));
   };
 
   const nextSlide = () => {
-    setSlide(slide + 1);
+    setSlide((prev) => (prev >= items.length - 1 ? 0 : prev + 1));
   };
 
   return (
