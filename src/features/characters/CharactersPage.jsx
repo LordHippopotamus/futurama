@@ -21,7 +21,7 @@ const CharactersPage = () => {
 
   let content;
 
-  if (status === 'loading' || status === 'idle') {
+  if (status === 'loading') {
     content = <CircularProgress />;
   } else if (status === 'failed') {
     content = <Typography sx={{ color: 'error.main' }}>{error}</Typography>;

@@ -21,14 +21,10 @@ const Quotes = () => {
 
   let content;
 
-  if (status === 'loading' || status === 'idle') {
+  if (status === 'loading') {
     content = <CircularProgress />;
   } else if (status === 'failed') {
-    content = (
-      <Typography sx={{ color: 'error.main' }}>
-        {error}
-      </Typography>
-    );
+    content = <Typography sx={{ color: 'error.main' }}>{error}</Typography>;
   } else if (status === 'succeeded') {
     content = <Slider items={quotes} />;
   }
@@ -37,7 +33,7 @@ const Quotes = () => {
     <Container
       sx={{
         height: 'calc(100vh - 64px)',
-        display: (status === 'loading' || status === 'idle') ? 'flex' : 'block',
+        display: (status === 'loading') ? 'flex' : 'block',
         alignItems: 'center',
         justifyContent: 'center',
       }}
