@@ -13,6 +13,7 @@ import PaginationItem from '@mui/material/PaginationItem';
 const Quotes = ({ page, quotes }) => (
   <Box sx={{
     my: 4,
+    width: 1,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',

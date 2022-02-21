@@ -14,7 +14,7 @@ const Characters = ({ characters }) => (
       xs: 1, sm: 2, md: 3, lg: 4,
     }}
     spacing={2}
-    sx={{ my: 4 }}
+    sx={{ my: 4, width: 1 }}
   >
     {characters.map((item) => (
       <Card key={item.Name}>

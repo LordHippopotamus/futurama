@@ -20,6 +20,7 @@ const Slider = ({ items }) => {
   return (
     <Box sx={{
       height: 1,
+      width: 1,
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'space-between',
