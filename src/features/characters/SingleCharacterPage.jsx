@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchAllCharacters } from './charactersSlice';
 import withLoadingStatus from '../../components/withLoadingStatus';
 import SingleCharacter from './SingleCharacter';
+import MissingSingleCharacter from './MissingSingleCharacter';
 
 const SingleCharacterPage = () => {
   const params = useParams();
@@ -21,8 +22,9 @@ const SingleCharacterPage = () => {
     }
   }, [dispatch, name]);
 
-  const SingleQuoteWithLoadingStatus = withLoadingStatus(SingleCharacter, status, error);
+  if (!character) return <MissingSingleCharacter />;
 
+  const SingleQuoteWithLoadingStatus = withLoadingStatus(SingleCharacter, status, error);
   return <SingleQuoteWithLoadingStatus character={character} />;
 };
 
