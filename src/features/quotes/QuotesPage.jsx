@@ -1,10 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
-import CircularProgress from '@mui/material/CircularProgress';
-import Typography from '@mui/material/Typography';
-import { Container } from '@mui/material';
 import { fetchAllQuotes } from './quotesSlice';
+import withLoadingStatus from '../../components/withLoadingStatus';
 import Quotes from './Quotes';
 
 const QuotesPage = () => {
@@ -22,27 +20,9 @@ const QuotesPage = () => {
     }
   }, [dispatch]);
 
-  let content;
+  const QuotesWithLoadingStatus = withLoadingStatus(Quotes, status, error);
 
-  if (status === 'loading') {
-    content = <CircularProgress />;
-  } else if (status === 'failed') {
-    content = <Typography sx={{ color: 'error.main' }}>{error}</Typography>;
-  } else if (status === 'succeeded') {
-    content = <Quotes page={page} quotes={quotes} />;
-  }
-
-  return (
-    <Container sx={{
-      minHeight: 'calc(100vh - 64px)',
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-    }}
-    >
-      {content}
-    </Container>
-  );
+  return <QuotesWithLoadingStatus page={page} quotes={quotes} />;
 };
 
 export default QuotesPage;

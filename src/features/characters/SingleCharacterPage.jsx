@@ -1,10 +1,8 @@
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import Container from '@mui/material/Container';
-import Typography from '@mui/material/Typography';
-import CircularProgress from '@mui/material/CircularProgress';
 import { fetchAllCharacters } from './charactersSlice';
+import withLoadingStatus from '../../components/withLoadingStatus';
 import SingleCharacter from './SingleCharacter';
 
 const SingleCharacterPage = () => {
@@ -23,29 +21,9 @@ const SingleCharacterPage = () => {
     }
   }, [dispatch, name]);
 
-  let content;
+  const SingleQuoteWithLoadingStatus = withLoadingStatus(SingleCharacter, status, error);
 
-  if (status === 'loading') {
-    content = <CircularProgress />;
-  } else if (status === 'failed') {
-    content = <Typography sx={{ color: 'error.main' }}>{error}</Typography>;
-  } else if (status === 'succeeded') {
-    content = <SingleCharacter character={character} />;
-  }
-
-  return (
-    <Container
-      maxWidth="md"
-      sx={{
-        height: 'calc(100vh - 64px)',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: (status === 'loading') ? 'center' : 'flex-start',
-      }}
-    >
-      {content}
-    </Container>
-  );
+  return <SingleQuoteWithLoadingStatus character={character} />;
 };
 
 export default SingleCharacterPage;

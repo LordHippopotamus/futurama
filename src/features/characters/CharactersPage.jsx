@@ -1,9 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import CircularProgress from '@mui/material/CircularProgress';
-import Typography from '@mui/material/Typography';
-import { Container } from '@mui/material';
 import { fetchAllCharacters } from './charactersSlice';
+import withLoadingStatus from '../../components/withLoadingStatus';
 import Characters from './Characters';
 
 const CharactersPage = () => {
@@ -19,27 +17,9 @@ const CharactersPage = () => {
     }
   }, [dispatch]);
 
-  let content;
+  const SingleQuoteWithLoadingStatus = withLoadingStatus(Characters, status, error);
 
-  if (status === 'loading') {
-    content = <CircularProgress />;
-  } else if (status === 'failed') {
-    content = <Typography sx={{ color: 'error.main' }}>{error}</Typography>;
-  } else if (status === 'succeeded') {
-    content = <Characters characters={characters} />;
-  }
-
-  return (
-    <Container sx={{
-      minHeight: 'calc(100vh - 64px)',
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-    }}
-    >
-      {content}
-    </Container>
-  );
+  return <SingleQuoteWithLoadingStatus characters={characters} />;
 };
 
 export default CharactersPage;
