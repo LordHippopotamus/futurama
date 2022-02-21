@@ -12,7 +12,7 @@ import App from './App';
 import Home from './features/home/Home';
 import Quotes from './features/quotes/Quotes';
 import SingleQuotePage from './features/quotes/SingleQuotePage';
-import Characters from './features/characters/Characters';
+import CharactersPage from './features/characters/CharactersPage';
 import SingleCharacterPage from './features/characters/SingleCharacterPage';
 
 const theme = createTheme({
@@ -31,7 +31,7 @@ ReactDOM.render(
               <Route index element={<Home />} />
               <Route path="/quotes" element={<Quotes />} />
               <Route path="/quotes/:quoteQuery" element={<SingleQuotePage />} />
-              <Route path="/characters" element={<Characters />} />
+              <Route path="/characters" element={<CharactersPage />} />
               <Route path="/characters/:characterName" element={<SingleCharacterPage />} />
             </Route>
           </Routes>
