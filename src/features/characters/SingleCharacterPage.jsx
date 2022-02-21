@@ -19,7 +19,7 @@ const SingleCharacterPage = () => {
 
   useEffect(() => {
     if (status === 'idle') {
-      dispatch(fetchAllCharacters(name));
+      dispatch(fetchAllCharacters());
     }
   }, [dispatch, name]);
 

@@ -17,15 +17,6 @@ export const fetchAllQuotes = createAsyncThunk(
   },
 );
 
-export const fetchSingleQuote = createAsyncThunk(
-  'quotes/fetchSingleQuote',
-  async (query) => {
-    const request = await fetch(`https://futuramaapi.herokuapp.com/api/quotes?search=${query.slice(0, 10)}`);
-    const json = await request.json();
-    return json[0];
-  },
-);
-
 const quotesSlice = createSlice({
   name: 'quotes',
   initialState,
@@ -42,9 +33,6 @@ const quotesSlice = createSlice({
       .addCase(fetchAllQuotes.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.error.message;
-      })
-      .addCase(fetchSingleQuote.fulfilled, (state, action) => {
-        state.single = action.payload;
       });
   },
 });
