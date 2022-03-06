@@ -19,29 +19,36 @@ const Slider = ({ items }) => {
 
   return (
     <Box sx={{
-      height: 1,
+      height: 'calc(100vh - 64px)',
       width: 1,
       display: 'flex',
-      alignItems: 'center',
       justifyContent: 'space-between',
     }}
     >
-      <IconButton onClick={prevSlide}>
+      <IconButton sx={{ mr: 2, alignSelf: 'center' }} onClick={prevSlide}>
         <ArrowBackIosNewIcon />
       </IconButton>
       <Box sx={{
+        position: 'relative',
         height: 1,
         width: 1,
-        px: 2,
       }}
       >
         {items.map((item, index) => (
-          <Box sx={{ display: slide === index ? 'flex' : 'none' }} key={item.quote}>
+          <Box
+            sx={{
+              position: 'absolute',
+              width: 1,
+              opacity: slide === index ? '1' : '0',
+              transition: '0.4s',
+            }}
+            key={item.quote}
+          >
             <SingleQuote quote={item} />
           </Box>
         ))}
       </Box>
-      <IconButton onClick={nextSlide}>
+      <IconButton sx={{ ml: 2, alignSelf: 'center' }} onClick={nextSlide}>
         <ArrowForwardIosIcon />
       </IconButton>
     </Box>
