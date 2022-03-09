@@ -34,7 +34,7 @@ const SingleQuote = ({ quote }) => (
         {quote.quote}
         &quot;
         {' - '}
-        <Link component={RouterLink} to={`/characters/${quote.character}`} sx={{ display: 'inline' }}>
+        <Link component={RouterLink} to={`/characters/${quote.character}`}>
           {quote.character}
         </Link>
       </Typography>

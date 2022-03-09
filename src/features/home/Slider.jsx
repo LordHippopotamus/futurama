@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
@@ -39,12 +39,13 @@ const Slider = ({ items }) => {
             sx={{
               position: 'absolute',
               width: 1,
-              opacity: slide === index ? '1' : '0',
+              opacity: slide === index ? 1 : 0,
+              zIndex: slide === index ? 100 : 0,
               transition: '0.4s',
             }}
             key={item.quote}
           >
-            <SingleQuote quote={item} />
+            {useMemo(() => <SingleQuote quote={item} />, [item])}
           </Box>
         ))}
       </Box>
