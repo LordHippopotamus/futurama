@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {
-  HashRouter,
+  BrowserRouter,
   Routes,
   Route,
 } from 'react-router-dom';
@@ -25,7 +25,7 @@ ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <ThemeProvider theme={theme}>
-        <HashRouter>
+        <BrowserRouter>
           <Routes>
             <Route path="/" element={<App />}>
               <Route index element={<Home />} />
@@ -35,7 +35,7 @@ ReactDOM.render(
               <Route path="/characters/:characterName" element={<SingleCharacterPage />} />
             </Route>
           </Routes>
-        </HashRouter>
+        </BrowserRouter>
       </ThemeProvider>
     </Provider>
   </React.StrictMode>,
