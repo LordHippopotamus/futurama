@@ -1,5 +1,7 @@
 /* eslint-disable react/prop-types */
-import React, { useState, useMemo } from 'react'
+import React, { useMemo } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { next, prev } from './sliderSlice'
 import Box from '@mui/material/Box'
 import IconButton from '@mui/material/IconButton'
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
@@ -7,14 +9,15 @@ import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew'
 import SingleQuote from '../quotes/SingleQuote'
 
 const Slider = ({ items }) => {
-    const [slide, setSlide] = useState(0)
+    const dispatch = useDispatch()
+    const slide = useSelector((state) => state.slider)
 
     const prevSlide = () => {
-        setSlide((prev) => (prev <= 0 ? items.length - 1 : prev - 1))
+        dispatch(prev(items.length))
     }
 
     const nextSlide = () => {
-        setSlide((prev) => (prev >= items.length - 1 ? 0 : prev + 1))
+        dispatch(next(items.length))
     }
 
     return (
